@@ -53,3 +53,20 @@ export const updateContent = ({ startIndex, arr }) => {
 
   return result;
 };
+
+export const computeFormulaValue = (content) => {
+  let result = content;
+
+  if (content.startsWith("=SUM(") && content.endsWith(")")) {
+    let entitiesString = content
+      ?.substr(0, content.length - 1)
+      ?.substr(5)
+      ?.split(",");
+    result = entitiesString
+      ?.map((entity) => Number(entity?.trim()))
+      ?.reduce((a, b) => a + b, 0);
+
+    return typeof result === "number" && !isNaN(result) ? result : "#ERROR";
+  }
+  return result;
+};

@@ -39,7 +39,7 @@ const Row = (props) => {
               key={`${row.rowId}-${columnHeader.key}`}
               rowId={row.rowId}
               columnKey={columnHeader.key}
-              content={row.content}
+              content={row[columnHeader.key]}
             />
           ))}
         </>
